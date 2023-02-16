@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - showtime-app.click
+    - calendar.kpognon.eu
     secretName: ingress-secret
   rules:
-  - host: showtime-app.click
+  - host: calendar.kpognon.eu
     http:
       paths:
       - path: /
