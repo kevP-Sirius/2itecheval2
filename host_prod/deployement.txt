@@ -1,9 +1,13 @@
-kubectl create namespace todolist-application
+kubectl create namespace calendar-application
 
-sudo microk8s kubectl apply -f todolist-kotlin-backend-deployment.yml
-sudo microk8s kubectl apply -f todolist-kotlin-backend-service.yml
-sudo microk8s kubectl apply -f todolist-kotlin-backend-ingress.yml
+sudo microk8s kubectl apply -f calendar-backend-deployment.yml
+sudo microk8s kubectl apply -f calendar-backend-service.yml
+sudo microk8s kubectl apply -f calendar-backend-ingress.yml
 
 
-sudo microk8s kubectl apply -f todolist-kotlin-mongodb-deployment.yml
-sudo microk8s kubectl apply -f todolist-kotlin-mongodb-service.yml
+sudo microk8s kubectl apply -f calendar-mongodb-deployment.yml
+sudo microk8s kubectl apply -f calendar-mongodb-service.yml
+
+sudo microk8s kubectl apply -f calendar-frontend-deployment.yaml
+sudo microk8s kubectl apply -f calendar-frontend-service.yaml
+sudo microk8s kubectl apply -f calendar-frontend-ingress.yaml
