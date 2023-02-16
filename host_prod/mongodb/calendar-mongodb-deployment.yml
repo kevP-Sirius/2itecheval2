@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb-deployement
-  namespace: todolist-application
+  namespace: calendar-application
   labels:
     app: mongodb
 spec:
