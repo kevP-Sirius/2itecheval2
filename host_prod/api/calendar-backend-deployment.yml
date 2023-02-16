@@ -36,5 +36,5 @@ spec:
       volumes:
         - name: back-end-build
           hostPath: 
-            path:  /home/ubuntu/2itecheval2/calendar-backend/
+            path:  /home/ubuntu/2itecheval2/calendar_backend/
             type: Directory
