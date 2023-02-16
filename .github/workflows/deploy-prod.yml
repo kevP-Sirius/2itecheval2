@@ -19,7 +19,7 @@ jobs:
       - name: Generate new build for production
         run: |
           cd /var/www/html && git clone https://github.com/kevP-Sirius/2itecheval2.git
-          cd /var/www/html/2itecheval2/calendar_frontend && npm i && npm run build
+          cd /var/www/html/2itecheval2/calendar_frontend && npm ci && npm run build
       - name: Generate SSH connection to server with ansible for production
         run: |
           touch /var/www/html/mypckey.pem &&  chmod 600 /var/www/html/mypckey.pem && echo "$sshKey" >> /var/www/html/mypckey.pem
