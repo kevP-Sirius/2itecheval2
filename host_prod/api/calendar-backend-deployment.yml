@@ -36,5 +36,5 @@ spec:
       volumes:
         - name: back-end-build
           hostPath: 
-            path:  /home/ubuntu/todolist_kotlin_backend/
+            path:  /home/ubuntu/2itecheval2/calendar-backend/
             type: Directory

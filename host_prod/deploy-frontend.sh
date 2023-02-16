@@ -2,7 +2,7 @@
 # sudo microk8s kubectl apply -f showtime-api-deployment.yaml;
 git pull
 #bin/bash
-file="api/calendar-backend-deployment.yml"
+file="api/calendar-frontend-deployment.yml"
 oldstr=`grep  'my' $file | xargs`
 timestamp="$(date +"%Y-%m-%d-%H:%M:%S")"
 newstr="value: my-version-$timestamp"
@@ -23,9 +23,9 @@ do
 done
 echo "push new version to git"
  git add .
- git commit -m "deployment -- PROD --  version API : $timestamp"
+ git commit -m "deployment -- PROD --  version FRONTEND : $timestamp"
  git push
-while [ "$(sudo microk8s kubectl get pods -l app=calendar-backend -n calendar-application | grep -w "backend-deployment" | wc -l)" != "1" ]; do
+while [ "$(sudo microk8s kubectl get pods -l app=calendar -n calendar-application | grep -w "frontend-deployment" | wc -l)" != "1" ]; do
    sleep 5
    echo "Waiting for new api deployment to be ready..."
 done

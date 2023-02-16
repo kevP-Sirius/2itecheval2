@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: calendar-application
+  labels:
+    app: calendar-frontend
+spec:
+  selector:
+    matchLabels:
+      app: calendar
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: calendar
+    spec:
+      containers:
+      - name: calendar
+        image: kevinpsirius/angular_deployment_cli:carrymode2
+        resources:
+          limits:
+            memory: "2048Mi"
+          requests:
+            memory: "150Mi"
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - mountPath: /etc/apache2/sites-available
+            name: apache-data-sites-available
+          - mountPath: /etc/apache2/apache2.conf
+            name: apache-data-apache2-conf
+          - mountPath: /var/www/html/.htaccess
+            name: htaccess-file
+          - mountPath: /var/www/html/dist
+            name: build-folder
+        command: ["/bin/sh", "-c"]
+        # args: ["tail -f /dev/null"]
+#        args: ["cd /var/www/html && git clone https://github.com/JAKY99/showtime_CLIENT.git && mv /var/www/html/client_node_modules /var/www/html/showtime_CLIENT/node_modules && cd showtime_CLIENT && node --max-old-space-size=2048 $(which npm) i && node --max-old-space-size=2048 $(which ng) build --source-map=false --build-optimizer=false --optimization=false --progress=false --statsJson=false  --aot=true --showCircularDependencies=false --namedChunks=false --outputHashing=none --vendorChunk=false && mv dist/* /var/www/html && cd .. && rm -rf showtime_CLIENT && service apache2 start && touch /var/www/html/ready.txt && tail -f /dev/null"]
+        # args: ["apachectl -D FOREGROUND"]
+        args: [ "cp -r /var/www/html/dist/* /var/www/html && service apache2 start && touch /var/www/html/ready.txt && tail -f /dev/null" ]
+        ports:
+        - name: http
+          containerPort: 80
+        startupProbe:
+          initialDelaySeconds: 1
+          failureThreshold: 600
+          periodSeconds: 5
+          exec:
+            command:
+            - cat
+            - /var/www/html/ready.txt
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 80
+        #   initialDelaySeconds: 1
+        #   periodSeconds: 1
+        env:
+        - name: DEBIAN_FRONTEND
+          value: noninteractive
+        - name: version
+          value: my-version-2023-01-18-05:25:48
+      volumes: 
+        - name: apache-data-sites-available
+          hostPath: 
+            path: /home/ubuntu/2itecheval2/apache/sites-available
+        - name: apache-data-apache2-conf
+          hostPath: 
+            path: /home/ubuntu/2itecheval2/apache/apache2.conf
+        - name: htaccess-file
+          hostPath: 
+            path:  /home/ubuntu/2itecheval2/apache/.htaccess
+            type: File
+        - name: build-folder
+          hostPath:
+            path: /home/ubuntu/2itecheval2/build_front_client_prod
+            type: Directory
