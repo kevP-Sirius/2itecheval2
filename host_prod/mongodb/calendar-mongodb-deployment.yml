@@ -38,6 +38,6 @@ spec:
       volumes:
         - name: mongodb-data
           hostPath:
-            path: /home/ubuntu/todolist_kotlin_backend/mongodb-data
+            path: /home/ubuntu/2itecheval2/mongodb-data
             type: DirectoryOrCreate
 
