@@ -4,10 +4,10 @@ metadata:
   name: mongodb-service
   namespace: calendar-application
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: mongodb
   ports:
     - port: 27017
       targetPort: 27017
-#      nodePort: 32017
+      nodePort: 33022
