@@ -8,7 +8,7 @@ on:
         default: 'latest'
 jobs:
   prod-deploy:
-    environment: prod
+    environment: production
     runs-on: ubuntu-latest
     container:
       image: kevinpsirius/pipeline_deployment_image:calendar
