@@ -60,7 +60,7 @@ spec:
         - name: DEBIAN_FRONTEND
           value: noninteractive
         - name: version
-          value: my-version-2023-02-16-17:32:26
+          value: my-version-2023-02-16-17:36:33
       volumes: 
         - name: apache-data-sites-available
           hostPath: 
