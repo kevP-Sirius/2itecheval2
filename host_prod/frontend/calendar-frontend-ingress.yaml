@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
     - calendar.kpognon.eu
-    secretName: ingress-secret
+    secretName: ingress-secret-calendar
   rules:
   - host: calendar.kpognon.eu
     http:
