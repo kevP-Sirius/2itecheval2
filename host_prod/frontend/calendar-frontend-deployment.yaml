@@ -74,5 +74,5 @@ spec:
             type: File
         - name: build-folder
           hostPath:
-            path: /home/ubuntu/2itecheval2/build_front_client_production
+            path: /home/ubuntu/2itecheval2/build_front_client_production/build/
             type: Directory

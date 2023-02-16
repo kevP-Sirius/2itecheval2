@@ -27,7 +27,7 @@ echo "push new version to git"
  git push
 while [ "$(sudo microk8s kubectl get pods -l app=calendar -n calendar-application | grep -w "frontend-deployment" | wc -l)" != "1" ]; do
    sleep 5
-   echo "Waiting for new api deployment to be ready..."
+   echo "Waiting for new frontend deployment to be ready..."
 done
 echo "Rolling update fully complete"
 
