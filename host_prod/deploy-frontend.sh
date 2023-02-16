@@ -2,7 +2,7 @@
 # sudo microk8s kubectl apply -f showtime-api-deployment.yaml;
 git pull
 #bin/bash
-file="frontend/calendar-frontend-deployment.yml"
+file="/frontend/calendar-frontend-deployment.yml"
 oldstr=`grep  'my' $file | xargs`
 timestamp="$(date +"%Y-%m-%d-%H:%M:%S")"
 newstr="value: my-version-$timestamp"
