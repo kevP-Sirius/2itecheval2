@@ -11,7 +11,7 @@ jobs:
     environment: production
     runs-on: ubuntu-latest
     container:
-      image: kevinpsirius/pipeline_deployment_image:calendar
+      image: kevinpsirius/pipeline_deployment_image:calendar2
       env:
         sshKey: ${{ secrets.SSH_KEY }}
     steps:
